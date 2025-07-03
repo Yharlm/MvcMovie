@@ -12,7 +12,8 @@ namespace MvcMovie.Controllers
         {
             _logger = logger;
         }
-
+        // Delete this later
+        
         public IActionResult Index()
         {
             return View();
@@ -22,12 +23,8 @@ namespace MvcMovie.Controllers
         {
             return View();
         }
-        // Delete this later
-        public string TestingText = "";
-        public IActionResult Test()
-        {
-            return View();
-        }
+        
+        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
