@@ -6,9 +6,17 @@ namespace MvcMovie.Controllers
     // Before controler becomes the namespace for the views
     public class HelloWorldController : Controller
     {
-        public string Welcome(string a, int ID)
+        public IActionResult Index()
         {
-            return HtmlEncoder.Default.Encode($"Hello {a}, Num is {ID}!");
+            return base.View();
+        }
+
+        public IActionResult Welcome (string name, int numTimes = 1)
+        {
+            ViewData["Message"] = "Hello " + name;
+            ViewData["NumTimes"] = numTimes;
+
+            return View();
         }
     }
 }
