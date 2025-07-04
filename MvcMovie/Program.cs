@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using MvcMovie.Models;
 using MvcMovie.Data;
 namespace MvcMovie
 {
@@ -16,6 +17,12 @@ namespace MvcMovie
 
             var app = builder.Build();
 
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+
+                SeedData.Initialize(services);
+            }
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
@@ -34,6 +41,7 @@ namespace MvcMovie
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+            //id here corsponds to the id of the movie in the DB
 
             app.Run();
         }
